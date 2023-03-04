@@ -1,3 +1,4 @@
+// fetch data from API 
 const fetchCardData = () => {
 	loadSpinner(true);
 	fetch('https://openapi.programming-hero.com/api/ai/tools')
@@ -8,7 +9,7 @@ const fetchCardData = () => {
 		})
 }
 
-// display card data function
+// display main card data 
 const showDetails = document.getElementById('show-details');
 const displayCardData = (tools) => {
 	console.log(tools);
@@ -48,6 +49,7 @@ const displayCardData = (tools) => {
 
 }
 
+// fetch data for see moro button 
 document.getElementById('btn-see-more').addEventListener('click', function () {
 	loadSpinner(true);
 	const cardList = document.getElementById('cards-container');
@@ -59,8 +61,7 @@ document.getElementById('btn-see-more').addEventListener('click', function () {
 
 })
 
-
-// each card feature showing
+// each card feature and integration items fetch & show
 const featureList = (features) => {
 	let featureHTML = '';
 	for (let i = 0; i < features.length; i++) {
@@ -104,6 +105,7 @@ const showModalDetails = (dataAll) => {
             </div>
         </div>
     	<div class="flex gap-20">
+
         	<div>
             	<h3 class= "font-semibold text-2xl mb-4">Features</h3>
 				<ul>
@@ -111,16 +113,16 @@ const showModalDetails = (dataAll) => {
             		<li>2. ${dataAll.features[2].feature_name}</li>
             		<li>3. ${dataAll.features[3].feature_name}</li>
             	</ul>
-			
-			
         	</div>
+
         	<div>
          		<h3 class= "font-semibold text-2xl mb-4">Integrations</h3>
-					
 					${featureList(dataAll.integrations)}
         	</div>
+
     	</div>
 	</div>
+
 	<div class=" p-2 border-solid border-2 border-slate-100 rounded-lg">
 		<div >
 			<img src="${dataAll.image_link[0]}" class="rounded-lg">
@@ -130,21 +132,17 @@ const showModalDetails = (dataAll) => {
     		<h3 class="p-5 font-semibold text-2xl text-center">"${dataAll.input_output_examples[0].input}"</h3>
     		<p class="text-center" >"${dataAll.input_output_examples[0].output}"</p>
 	</div>
+
 	<div class="modal-action">
     	<label for="my-modal-5" class="btn bg-red-400">X</label>
 	</div>
+
     `;
 	modalCard.appendChild(modalDiv);
 	loadSpinner(false);
 }
 
-{/* <ol>
-	<li>1. ${dataAll.integrations[0]}</li>
-	<li>2. ${dataAll.integrations[1]}</li>
-	<li>3. ${dataAll.integrations[2]}</li>
-</ol> */}
-
-// ${featureList(dataAll.integrations)}
+// modal feature data featch & show dynamically 
 const modalFeatureList = (modalFeatures) => {
 	let modalFeatureArray = [];
 	for (let i = 0; i < 3; i++) {
@@ -164,41 +162,6 @@ const modalFeatureList = (modalFeatures) => {
 }
 
 
-
-// see more btn 
-// document.getElementById('btn-see-more').addEventListener('click', function (tools) {
-// 	const cardsContainer = document.getElementById('cards-container');
-// 	// tools = tools.slice(0,6);
-// 	tools.forEach(tool => {
-// 		const cardDiv = document.createElement('div');
-// 		cardDiv.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
-// 		cardDiv.innerHTML = `
-// 			<figure class="p-2"><img src="${tool.image}" alt="Shoes" /></figure>
-// 			<div class="card-body">
-// 				<h2 class="card-title">Features</h2>
-// 					${featureList(tool.features)}
-// 				<hr>
-// 				<div class="align-middle"> 
-// 					<div>
-// 						<div class="card-title">
-// 							${(tool.name)}
-// 						</div>
-// 						<div>
-// 							<i class="fa-regular fa-calendar-days"></i>
-// 								${tool.published_in}
-// 						</div>
-// 					</div>
-
-// 					<div class=" text-red-400 card-actions justify-end">
-// 						<i class="fa-solid fa-arrow-right"></i>
-//         			</div>
-
-// 				</div>
-// 			</div>
-// 			`;
-// 		cardsContainer.appendChild(cardDiv);
-// 	});
-// })
 const loadSpinner = isLoading => {
 	const loader = document.getElementById('spinner-id');
 	if (isLoading) {
