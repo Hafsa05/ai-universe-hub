@@ -19,7 +19,7 @@ const displayCardData = (tools) => {
 		const cardDiv = document.createElement('div');
 		cardDiv.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
 		cardDiv.innerHTML = `
-			<figure class="p-2"><img src="${tool.image}" alt="Shoes" /></figure>
+			<figure class="p-2"><img src="${tool.image}" alt="Shoes"/></figure>
 			<div class="card-body">
 				<h2 class="card-title">Features</h2>
 					${featureList(tool.features)}
@@ -48,7 +48,7 @@ const displayCardData = (tools) => {
 
 		cardsContainer.appendChild(cardDiv);
 	});
-	
+
 	showDetails.classList.remove('hidden');
 	loadSpinner(false);
 
@@ -195,5 +195,6 @@ function sortObjects(objects) {
 	sortByPublishingDateAscending(objects);
 	console.log(objects);
 }
+
 // ${featureList(dataDetails.integrations)}
 // fetchCardData();
