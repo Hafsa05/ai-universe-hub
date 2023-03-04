@@ -94,30 +94,34 @@ const showModalDetails = (dataDetails) => {
 	const modalCard = document.getElementById('modal-card');
 	modalCard.textContent = '';
 	const modalDiv = document.createElement('div')
-	modalDiv.classList.add('flex', 'gap-10')
+	modalDiv.classList.add('md:flex', 'gap-10')
 	modalDiv.innerHTML = `
     <div class=" bg-red-50 border-solid border-2 border-red-300 p-10 rounded-lg">
         <h2 class="font-semibold">${dataDetails.description}</h2>
         <div class="grid grid-cols-3 gap-5 text-center">
+
             <div class = "bg-white">
                 <h3 class="px-2 py-10 text-lime-500 font-semibold"><span>${dataDetails.pricing[0].price ? dataDetails.pricing[0].price : 'Free of Cost/'}</span><br><span>${dataDetails.pricing[0].plan}</span></h3>
              </div>
+
             <div class = "bg-white">
                 <h3 class="px-2 py-10 text-yellow-600 font-semibold"><span>${dataDetails.pricing[1].price}</span><br><span>${dataDetails.pricing[1].plan}</span></h3>
             </div>
+
             <div class = "bg-white">
                 <h3 class="px-2 py-10 text-red-600 font-semibold"><span>${dataDetails.pricing[2].price}</span><br><span>${dataDetails.pricing[2].plan}</span></h3>
             </div>
+
         </div>
     	<div class="flex gap-20">
 
         	<div>
             	<h3 class= "font-semibold text-2xl mb-4">Features</h3>
-				<ul>
+				<ol>
             		<li>1. ${dataDetails.features[1].feature_name}</li>
             		<li>2. ${dataDetails.features[2].feature_name}</li>
             		<li>3. ${dataDetails.features[3].feature_name}</li>
-            	</ul>
+            	</ol>
         	</div>
 
         	<div>
