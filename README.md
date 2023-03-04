@@ -26,7 +26,7 @@ const featureList = (features) => {
 	}
 	return featureHTML;
 }
-
+${singleAiInfo.features[1].feature_name
 
 <div class="card-actions justify-end">
 					<button class="btn btn-primary">Buy Now</button>

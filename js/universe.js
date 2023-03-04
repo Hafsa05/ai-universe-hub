@@ -268,13 +268,13 @@ document.getElementById('btn-see-more').addEventListener('click', function (tool
 	});
 })
 const loadSpinner = isLoading => {
-    const loader = document.getElementById('spinner-id');
-    if (isLoading) {
-        loader.classList.remove('hidden');
-    }
-    else {
-        loader.classList.add('hidden')
-    }
+	const loader = document.getElementById('spinner-id');
+	if (isLoading) {
+		loader.classList.remove('hidden');
+	}
+	else {
+		loader.classList.add('hidden')
+	}
 }
 
 // fetchCardData();
