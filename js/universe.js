@@ -113,7 +113,7 @@ const showModalDetails = (dataDetails) => {
             </div>
 
         </div>
-    	<div class="flex gap-20">
+    	<div class="mx-auto grid md:grid-cols-2">
 
         	<div>
             	<h3 class= "font-semibold text-2xl mb-4">Features</h3>
