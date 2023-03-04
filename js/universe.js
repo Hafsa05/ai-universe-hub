@@ -9,7 +9,7 @@ const fetchCardData = () => {
 		})
 }
 
-// display main card data 
+// display main 6 card data 
 const showDetails = document.getElementById('show-details');
 const displayCardData = (tools) => {
 	console.log(tools);
@@ -26,13 +26,16 @@ const displayCardData = (tools) => {
 				<hr>
 				<div class="align-middle"> 
 					<div>
+
 						<div class="card-title">
 							${(tool.name)}
 						</div>
+
 						<div>
 							<i class="fa-regular fa-calendar-days"></i>
 								${tool.published_in}
 						</div>
+
 					</div>
 				
 					<div class="text-2xl text-red-400 card-actions justify-end">
@@ -45,11 +48,13 @@ const displayCardData = (tools) => {
 
 		cardsContainer.appendChild(cardDiv);
 	});
+	
+	showDetails.classList.remove('hidden');
 	loadSpinner(false);
 
 }
 
-// fetch data for see moro button 
+// fetch data for see more button 
 document.getElementById('btn-see-more').addEventListener('click', function () {
 	loadSpinner(true);
 	const cardList = document.getElementById('cards-container');
@@ -84,24 +89,24 @@ const fetchModalDetails = (cardId) => {
 }
 
 // modal data showing
-const showModalDetails = (dataAll) => {
-	console.log(dataAll);
+const showModalDetails = (dataDetails) => {
+	console.log(dataDetails);
 	const modalCard = document.getElementById('modal-card');
 	modalCard.textContent = '';
 	const modalDiv = document.createElement('div')
 	modalDiv.classList.add('flex', 'gap-10')
 	modalDiv.innerHTML = `
     <div class=" bg-red-50 border-solid border-2 border-red-300 p-10 rounded-lg">
-        <h2 class="font-semibold">${dataAll.description}</h2>
+        <h2 class="font-semibold">${dataDetails.description}</h2>
         <div class="grid grid-cols-3 gap-5 text-center">
             <div class = "bg-white">
-                <h3 class="px-2 py-10 text-lime-500 font-semibold"><span>${dataAll.pricing[0].price ? dataAll.pricing[0].price : 'Free of Cost/'}</span><br><span>${dataAll.pricing[0].plan}</span></h3>
+                <h3 class="px-2 py-10 text-lime-500 font-semibold"><span>${dataDetails.pricing[0].price ? dataDetails.pricing[0].price : 'Free of Cost/'}</span><br><span>${dataDetails.pricing[0].plan}</span></h3>
              </div>
             <div class = "bg-white">
-                <h3 class="px-2 py-10 text-yellow-600 font-semibold"><span>${dataAll.pricing[1].price}</span><br><span>${dataAll.pricing[1].plan}</span></h3>
+                <h3 class="px-2 py-10 text-yellow-600 font-semibold"><span>${dataDetails.pricing[1].price}</span><br><span>${dataDetails.pricing[1].plan}</span></h3>
             </div>
             <div class = "bg-white">
-                <h3 class="px-2 py-10 text-red-600 font-semibold"><span>${dataAll.pricing[2].price}</span><br><span>${dataAll.pricing[2].plan}</span></h3>
+                <h3 class="px-2 py-10 text-red-600 font-semibold"><span>${dataDetails.pricing[2].price}</span><br><span>${dataDetails.pricing[2].plan}</span></h3>
             </div>
         </div>
     	<div class="flex gap-20">
@@ -109,15 +114,15 @@ const showModalDetails = (dataAll) => {
         	<div>
             	<h3 class= "font-semibold text-2xl mb-4">Features</h3>
 				<ul>
-            		<li>1. ${dataAll.features[1].feature_name}</li>
-            		<li>2. ${dataAll.features[2].feature_name}</li>
-            		<li>3. ${dataAll.features[3].feature_name}</li>
+            		<li>1. ${dataDetails.features[1].feature_name}</li>
+            		<li>2. ${dataDetails.features[2].feature_name}</li>
+            		<li>3. ${dataDetails.features[3].feature_name}</li>
             	</ul>
         	</div>
 
         	<div>
          		<h3 class= "font-semibold text-2xl mb-4">Integrations</h3>
-					${featureList(dataAll.integrations)}
+					${featureList(dataDetails.integrations)}
         	</div>
 
     	</div>
@@ -125,12 +130,12 @@ const showModalDetails = (dataAll) => {
 
 	<div class=" p-2 border-solid border-2 border-slate-100 rounded-lg">
 		<div >
-			<img src="${dataAll.image_link[0]}" class="rounded-lg">
-			<button class="btn btn-error text-white absolute top-10 right-20">${dataAll.accuracy.score * 100}% accuracy </button>
+			<img src="${dataDetails.image_link[0]}" class="rounded-lg">
+			<button class="btn btn-error text-white absolute top-10 right-20">${dataDetails.accuracy.score * 100}% accuracy </button>
 		</div>
 	
-    		<h3 class="p-5 font-semibold text-2xl text-center">"${dataAll.input_output_examples[0].input}"</h3>
-    		<p class="text-center" >"${dataAll.input_output_examples[0].output}"</p>
+    		<h3 class="p-5 font-semibold text-2xl text-center">"${dataDetails.input_output_examples[0].input}"</h3>
+    		<p class="text-center" >"${dataDetails.input_output_examples[0].output}"</p>
 	</div>
 
 	<div class="modal-action">
@@ -142,7 +147,7 @@ const showModalDetails = (dataAll) => {
 	loadSpinner(false);
 }
 
-// modal feature data featch & show dynamically 
+// modal feature data fetch & show dynamically 
 const modalFeatureList = (modalFeatures) => {
 	let modalFeatureArray = [];
 	for (let i = 0; i < 3; i++) {
@@ -161,7 +166,7 @@ const modalFeatureList = (modalFeatures) => {
 	return mFeatureHTML;
 }
 
-
+// spinner loading 
 const loadSpinner = isLoading => {
 	const loader = document.getElementById('spinner-id');
 	if (isLoading) {
@@ -172,6 +177,23 @@ const loadSpinner = isLoading => {
 	}
 }
 
+// sort by date 
+document.getElementById('btn-sort-date').addEventListener('click', function () {
+	loadSpinner(true);
+	const cardList = document.getElementById('cards-container');
+	cardList.innerHTML = '';
+	fetch(`https://openapi.programming-hero.com/api/ai/tools`)
+		.then(res => res.json())
+		.then(data => sortObjects(data.data.tools.published_in))
 
-// ${featureList(dataAll.integrations)}
+})
+function sortByPublishingDateAscending(objects) {
+	objects.sort((a, b) => new Date(a.publishingDate) - new Date(b.publishingDate));
+}
+
+function sortObjects(objects) {
+	sortByPublishingDateAscending(objects);
+	console.log(objects);
+}
+// ${featureList(dataDetails.integrations)}
 // fetchCardData();
