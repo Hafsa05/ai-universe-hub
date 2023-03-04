@@ -173,46 +173,6 @@ const showModalDetails = (dataAll) => {
 }
 
 
-
-{/* <ul>
-            <li>${dataAll.features[1].feature_name}</li>
-            <li>${dataAll.features[2].feature_name}</li>
-            <li>${dataAll.features[3].feature_name}</li>
-            </ul> 
-		
-		 ${modalFeatureList(dataAll.features)}
-		
-
-
-<ol>
-                <li>${dataAll.integrations[0]}</li>
-                <li>${dataAll.integrations[1]}</li>
-                <li>${dataAll.integrations[2]}</li>
-            </ol>
-
-				${dataAll.integrations ? featureList(dataAll.integrations) :'no data found' }
-
-		*/}
-
-
-// const modalFeatureList = (modalFeatures) => {
-// 	let mFeatureHTML = '';
-// 	for( const mFeatures of modalFeatures){
-// 		// // mFeatureHTML +=`
-// 		// <ul>
-// 		// 	<li>${i + 1}. ${modalFeatures.feature_name}</li>
-// 		// </ul>
-// 		// `;
-// 		mFeatures = modalFeatures.feturename;
-// 		mFeatureHTML +=`
-// 			<ul>
-// 				<li>${i + 1}. ${mFeatures}</li>
-// 			</ul>
-// 		`;
-// 	}
-
-// 	return mFeatureHTML;
-// }
 const modalFeatureList = (modalFeatures) => {
 	let modalFeatureArray = [];
 	for (let i = 0; i < 3; i++) {
@@ -276,5 +236,31 @@ const loadSpinner = isLoading => {
 		loader.classList.add('hidden')
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // fetchCardData();
