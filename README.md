@@ -12,22 +12,3 @@ All data: [https://openapi.programming-hero.com/api/ai/tools](https://openapi.pr
 Single data details: https://openapi.programming-hero.com/api/ai/tool/${id}
 
 Single data Example: https://openapi.programming-hero.com/api/ai/tool/01
-
-
-my raaf
-<ul>
-<li>1.${tool.features[0]}</li>
-</ul>
-
-const featureList = (features) => {
-	let featureHTML = '';
-	for (let i = 0; i <= features.length; i++) {
-		featureHTML += `<li>${tool.features[i]}</li>`;
-	}
-	return featureHTML;
-}
-${singleAiInfo.features[1].feature_name
-
-<div class="card-actions justify-end">
-					<button class="btn btn-primary">Buy Now</button>
-				</div>
