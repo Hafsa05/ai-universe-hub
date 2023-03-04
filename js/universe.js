@@ -187,12 +187,12 @@ document.getElementById('btn-sort-date').addEventListener('click', function () {
 		.then(data => sortObjects(data.data.tools.published_in))
 
 })
-function sortByPublishingDateAscending(objects) {
+function sortByPublishingDate(objects) {
 	objects.sort((a, b) => new Date(a.publishingDate) - new Date(b.publishingDate));
 }
 
 function sortObjects(objects) {
-	sortByPublishingDateAscending(objects);
+	sortByPublishingDate(objects);
 	console.log(objects);
 }
 
