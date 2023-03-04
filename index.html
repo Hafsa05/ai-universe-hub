@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI Universe Hub</title>
+
+	<!-- font awesome  -->
+	<script src="https://kit.fontawesome.com/a653686a7b.js" crossorigin="anonymous"></script>
+
+	<!-- daisyUI & tailwind css link -->
+	<link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body id="body-id" class="" onload="fetchCardData()">
+	<!-- page heading -->
+	<header class="items-center text-center">
+		<h2 class="text-4xl font-semibold m-10">AI Universe Hub</h2>
+	</header>
+	<main>
+		<!-- sort by date button  -->
+		<div class="flex justify-center">
+			<button id="btn-sort-date" class="btn btn-error text-white" onclick="sortObjects()">Sort By Date</button>
+		</div>
+		<section>
+			<div id="cards-container" class="grid grid-cols-3 m-10">
+
+			</div>
+
+		</section>
+
+		<!-- See More button  -->
+		<div class="flex justify-center">
+			<button id="btn-see-more" class="btn btn-error text-white">See More</button>
+		</div>
+
+		<!-- modal body  -->
+		<section>
+			<input type="checkbox" id="my-modal-5" class="modal-toggle" />
+			<div class="modal">
+				<div id="modal-card" class="modal-box w-11/12 max-w-5xl">
+
+				</div>
+
+
+		</section>
+		<button type="button" class="bg-indigo-500 ..." disabled>
+			<svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+			  <!-- ... -->
+			</svg>
+			Processing...
+		  </button>
+
+	</main>
+
+	<!-- js file link  -->
+	<script src="js/universe.js"></script>
+</body>
+
+</html>
