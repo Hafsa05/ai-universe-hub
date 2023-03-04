@@ -172,7 +172,6 @@ const showModalDetails = (dataAll) => {
 	loadSpinner(false);
 }
 
-
 const modalFeatureList = (modalFeatures) => {
 	let modalFeatureArray = [];
 	for (let i = 0; i < 3; i++) {
@@ -236,31 +235,5 @@ const loadSpinner = isLoading => {
 		loader.classList.add('hidden')
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // fetchCardData();
