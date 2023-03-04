@@ -13,4 +13,5 @@ Single data details: https://openapi.programming-hero.com/api/ai/tool/${id}
 
 Single data Example: https://openapi.programming-hero.com/api/ai/tool/01
 
-<!-- ## Assignment - 6 -->
+## Assignment - 6 
+## Submit Date : 4.3.2023
