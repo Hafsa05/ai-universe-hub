@@ -65,8 +65,8 @@ const displayCardData = (tools) => {
 						</div>
 					</div>
 				
-					<div class=" text-red-400 card-actions justify-end">
-					<label for="my-modal-5"><i class="fa-solid fa-arrow-right" onclick="fetchModalDetails('${tool.id}')"></i></label>
+					<div class="text-2xl text-red-400 card-actions justify-end">
+					<label for="my-modal-5"><i class="fa-solid fa-circle-arrow-right" onclick="fetchModalDetails('${tool.id}')"></i></label>
         			</div>
 
 				</div>
@@ -123,17 +123,17 @@ const showModalDetails = (dataAll) => {
 	const modalDiv = document.createElement('div')
 	modalDiv.classList.add('flex', 'gap-10')
 	modalDiv.innerHTML = `
-    <div class="border-solid border-2 border-sky-500 p-10">
+    <div class="border-solid border-2 border-sky-500 p-10 rounded-lg">
         <h2 class="font-semibold">${dataAll.description}</h2>
         <div class="grid grid-cols-3 gap-5 text-center">
             <div>
-                <h3 class="px-2 py-10 text-green-500 font-semibold"><span>${dataAll.pricing[0].price ? dataAll.pricing[0].price : 'Free of Cost/'}</span> <br> <span>${dataAll.pricing[0].plan}</span></h3>
+                <h3 class="px-2 py-10 text-green-500 font-semibold"><span>${dataAll.pricing[0].price ? dataAll.pricing[0].price : 'Free of Cost/'}</span><br><span>${dataAll.pricing[0].plan}</span></h3>
              </div>
             <div>
-                <h3 class="px-2 py-10 text-yellow-500 font-semibold"><span>${dataAll.pricing[1].price}</span> /<br> <span>${dataAll.pricing[1].plan}</span></h3>
+                <h3 class="px-2 py-10 text-yellow-500 font-semibold"><span>${dataAll.pricing[1].price}</span><br><span>${dataAll.pricing[1].plan}</span></h3>
             </div>
             <div>
-                <h3 class="px-2 py-10 text-red-500 font-semibold"><span>${dataAll.pricing[2].price}</span> /<br> <span>${dataAll.pricing[2].plan}</span></h3>
+                <h3 class="px-2 py-10 text-red-500 font-semibold"><span>${dataAll.pricing[2].price}</span><br><span>${dataAll.pricing[2].plan}</span></h3>
             </div>
         </div>
     	<div class="flex gap-20">
@@ -149,19 +149,19 @@ const showModalDetails = (dataAll) => {
         	</div>
         	<div>
          		<h3 class= "font-semibold text-2xl mb-4">Integrations</h3>
-			
-					${featureList(dataAll.integrations)}
+					${featureList(dataAll.integrations)} 
+					
 		 
         	</div>
     	</div>
 	</div>
-	<div class="border-solid border-2 border-sky-500 p-10">
+	<div class=" p-2 border-solid border-2 border-slate-300 rounded-lg">
 		<div>
 			<img src="${dataAll.image_link[0]}">
-			<button class="btn btn-error text-white absolute top-12 right-21">${dataAll.accuracy.score * 100}% accuracy </button>
+			<button class="btn btn-error text-white absolute top-10 right-20">${dataAll.accuracy.score * 100}% accuracy </button>
 		</div>
 	
-    		<h3 class="font-semibold text-5xl">"${dataAll.input_output_examples[0].input}"</h3>
+    		<h3 class="font-semibold text-2xl">"${dataAll.input_output_examples[0].input}"</h3>
     		<p>"${dataAll.input_output_examples[0].output}"</p>
 	</div>
 	<div class="modal-action">
@@ -171,6 +171,8 @@ const showModalDetails = (dataAll) => {
 	modalCard.appendChild(modalDiv);
 	loadSpinner(false);
 }
+
+// ${featureList(dataAll.integrations)}
 
 const modalFeatureList = (modalFeatures) => {
 	let modalFeatureArray = [];
