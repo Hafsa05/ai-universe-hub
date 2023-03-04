@@ -1,4 +1,5 @@
 const fetchCardData = () => {
+	loadSpinner(true);
 	fetch('https://openapi.programming-hero.com/api/ai/tools')
 		.then(res => res.json())
 		.then(data => displayCardData(data.data.tools))
@@ -12,14 +13,36 @@ const displayCardData = (tools) => {
 	// }
 	const cardsContainer = document.getElementById('cards-container');
 
+	//  see more button visibility
 	const showAll = document.getElementById('btn-see-more');
-    if(tools.length > 6) {
-        tools = tools.slice(0,6);
-        
-    }
-    else{
-        showAll.classList.add('hidden');
-    }
+	if (tools.length > 6) {
+		tools = tools.slice(0, 6);
+
+	}
+	else {
+		showAll.classList.add('hidden');
+	}
+
+
+
+	// sort by date
+	document.getElementById('btn-sort-date').addEventListener('click', function (objects) {
+		// sortByPublishingDateAscending(e);
+		sortObjects(objects);
+	})
+
+	function sortByPublishingDateAscending(objects) {
+		objects.sort((a, b) => new Date(a.publishingDate) - new Date(b.publishingDate));
+	}
+	function sortObjects(objects) {
+		sortByPublishingDateAscending(objects);
+		console.log(objects);
+	}
+
+
+
+
+
 
 	// tools = tools.slice(0,6);
 	tools.forEach(tool => {
@@ -49,10 +72,21 @@ const displayCardData = (tools) => {
 				</div>
 			</div>
 			`;
+
 		cardsContainer.appendChild(cardDiv);
 	});
+	loadSpinner(false);
 
 }
+
+
+
+
+
+
+
+
+
 
 // each card feature showing
 const featureList = (features) => {
@@ -74,12 +108,12 @@ const featureList = (features) => {
 
 // modal 
 const fetchModalDetails = (cardId) => {
+	loadSpinner(true);
 	const url = `https://openapi.programming-hero.com/api/ai/tool/${cardId}`;
 	// console.log(url);
 	fetch(url)
 		.then(res => res.json())
 		.then(data => showModalDetails(data.data))
-
 }
 
 const showModalDetails = (dataAll) => {
@@ -87,19 +121,19 @@ const showModalDetails = (dataAll) => {
 	const modalCard = document.getElementById('modal-card');
 	modalCard.textContent = '';
 	const modalDiv = document.createElement('div')
-	modalDiv.classList.add('flex')
+	modalDiv.classList.add('flex', 'gap-10')
 	modalDiv.innerHTML = `
-    <div>
-        <h2>${dataAll.description}</h2>
+    <div class="border-solid border-2 border-sky-500 p-10">
+        <h2 class="font-semibold">${dataAll.description}</h2>
         <div class="grid grid-cols-3 gap-5 text-center">
             <div>
-                <h3 class="px-2 py-10 bg-blue-500"><span>${dataAll.pricing[0].price ? dataAll.pricing[0].price : 'Free of Cost/'}</span> <br> <span>${dataAll.pricing[0].plan}</span></h3>
+                <h3 class="px-2 py-10 text-green-500 font-semibold"><span>${dataAll.pricing[0].price ? dataAll.pricing[0].price : 'Free of Cost/'}</span> <br> <span>${dataAll.pricing[0].plan}</span></h3>
              </div>
             <div>
-                <h3 class="px-2 py-10 bg-blue-500"><span>${dataAll.pricing[1].price}</span> /<br> <span>${dataAll.pricing[1].plan}</span></h3>
+                <h3 class="px-2 py-10 text-yellow-500 font-semibold"><span>${dataAll.pricing[1].price}</span> /<br> <span>${dataAll.pricing[1].plan}</span></h3>
             </div>
             <div>
-                <h3 class="px-2 py-10 bg-blue-500"><span>${dataAll.pricing[2].price}</span> /<br> <span>${dataAll.pricing[2].plan}</span></h3>
+                <h3 class="px-2 py-10 text-red-500 font-semibold"><span>${dataAll.pricing[2].price}</span> /<br> <span>${dataAll.pricing[2].plan}</span></h3>
             </div>
         </div>
     	<div class="flex gap-20">
@@ -121,13 +155,13 @@ const showModalDetails = (dataAll) => {
         	</div>
     	</div>
 	</div>
-	<div>
+	<div class="border-solid border-2 border-sky-500 p-10">
 		<div>
 			<img src="${dataAll.image_link[0]}">
-			<button class="btn btn-error text-white absolute top-7 right-20">${dataAll.accuracy.score* 100}% accuracy </button>
+			<button class="btn btn-error text-white absolute top-12 right-21">${dataAll.accuracy.score * 100}% accuracy </button>
 		</div>
 	
-    		<h3>"${dataAll.input_output_examples[0].input}"</h3>
+    		<h3 class="font-semibold text-5xl">"${dataAll.input_output_examples[0].input}"</h3>
     		<p>"${dataAll.input_output_examples[0].output}"</p>
 	</div>
 	<div class="modal-action">
@@ -135,6 +169,7 @@ const showModalDetails = (dataAll) => {
 	</div>
     `;
 	modalCard.appendChild(modalDiv);
+	loadSpinner(false);
 }
 
 
@@ -196,54 +231,50 @@ const modalFeatureList = (modalFeatures) => {
 	return mFeatureHTML;
 }
 
-// sort by date
-document.getElementById('btn-sort-date').addEventListener('click', function () {
-	// sortByPublishingDateAscending(e);
-	sortObjects();
-})
-function sortByPublishingDateAscending(objects) {
-	objects.sort((a, b) => new Date(a.publishingDate) - new Date(b.publishingDate));
-}
-function sortObjects() {
-    sortByPublishingDateAscending(objects);
-    console.log(objects);
-  }
-
 
 
 // see more btn 
-// document.getElementById('btn-see-more').addEventListener('click', function () {
-// 	const cardsContainer = document.getElementById('cards-container');
-// 	// tools = tools.slice(0,6);
-// 	tools.forEach(tool => {
-// 		const cardDiv = document.createElement('div');
-// 		cardDiv.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
-// 		cardDiv.innerHTML = `
-// 			<figure class="p-2"><img src="${tool.image}" alt="Shoes" /></figure>
-// 			<div class="card-body">
-// 				<h2 class="card-title">Features</h2>
-// 					${featureList(tool.features)}
-// 				<hr>
-// 				<div class="align-middle"> 
-// 					<div>
-// 						<div class="card-title">
-// 							${(tool.name)}
-// 						</div>
-// 						<div>
-// 							<i class="fa-regular fa-calendar-days"></i>
-// 								${tool.published_in}
-// 						</div>
-// 					</div>
+document.getElementById('btn-see-more').addEventListener('click', function (tools) {
+	const cardsContainer = document.getElementById('cards-container');
+	// tools = tools.slice(0,6);
+	tools.forEach(tool => {
+		const cardDiv = document.createElement('div');
+		cardDiv.classList.add("card", "w-96", "bg-base-100", "shadow-xl");
+		cardDiv.innerHTML = `
+			<figure class="p-2"><img src="${tool.image}" alt="Shoes" /></figure>
+			<div class="card-body">
+				<h2 class="card-title">Features</h2>
+					${featureList(tool.features)}
+				<hr>
+				<div class="align-middle"> 
+					<div>
+						<div class="card-title">
+							${(tool.name)}
+						</div>
+						<div>
+							<i class="fa-regular fa-calendar-days"></i>
+								${tool.published_in}
+						</div>
+					</div>
 				
-// 					<div class=" text-red-400 card-actions justify-end">
-// 						<i class="fa-solid fa-arrow-right"></i>
-//         			</div>
+					<div class=" text-red-400 card-actions justify-end">
+						<i class="fa-solid fa-arrow-right"></i>
+        			</div>
 
-// 				</div>
-// 			</div>
-// 			`;
-// 		cardsContainer.appendChild(cardDiv);
-// 	});
-// })
+				</div>
+			</div>
+			`;
+		cardsContainer.appendChild(cardDiv);
+	});
+})
+const loadSpinner = isLoading => {
+    const loader = document.getElementById('spinner-id');
+    if (isLoading) {
+        loader.classList.remove('hidden');
+    }
+    else {
+        loader.classList.add('hidden')
+    }
+}
 
 // fetchCardData();

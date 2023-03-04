@@ -23,7 +23,7 @@
 	<main>
 		<!-- sort by date button  -->
 		<div class="flex justify-center">
-			<button id="btn-sort-date" class="btn btn-error text-white" onclick="sortObjects()">Sort By Date</button>
+			<button id="btn-sort-date" class="btn btn-error text-white" onclick="sortObjects(objects)">Sort By Date</button>
 		</div>
 		<section>
 			<div id="cards-container" class="grid grid-cols-3 m-10">
@@ -44,18 +44,17 @@
 				<div id="modal-card" class="modal-box w-11/12 max-w-5xl">
 
 				</div>
-
-
 		</section>
-		<button type="button" class="bg-indigo-500 ..." disabled>
-			<svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-			  <!-- ... -->
-			</svg>
-			Processing...
-		  </button>
 
+		<!-- spinner  -->
+		<section>
+            <div id="spinner-id" class="text-center hidden ">
+                <button class="btn btn-square loading felx justify-center items-center"></button>
+            </div>
+        </section>
+		
 	</main>
-
+	
 	<!-- js file link  -->
 	<script src="js/universe.js"></script>
 </body>
